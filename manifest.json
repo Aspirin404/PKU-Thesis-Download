@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "PKU Thesis Download - 北大论文下载",
+  "version": "2.0.0",
+  "description": "北京大学学位论文下载工具，支持直连、Web VPN、PAC VPN 等多种访问方式",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "*://drm.lib.pku.edu.cn/*",
+    "*://162.105.134.201/*",
+    "*://*.webvpn.bjmu.edu.cn/*",
+    "*://wpn.pku.edu.cn/*",
+    "*://pacvpn.pku.edu.cn/*",
+    "*://*.pacvpn.pku.edu.cn/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://drm.lib.pku.edu.cn/*",
+        "*://162.105.134.201/*",
+        "*://*.webvpn.bjmu.edu.cn/*",
+        "*://wpn.pku.edu.cn/*",
+        "*://pacvpn.pku.edu.cn/*",
+        "*://*.pacvpn.pku.edu.cn/*"
+      ],
+      "js": ["lib/jspdf.umd.min.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
